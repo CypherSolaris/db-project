@@ -1,0 +1,15 @@
+<!-- templates/members_list.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Mitglieder</h1>
+<a href="{{ url_for('members.new_member') }}">Mitglied erfassen</a>
+<ul>
+  {% for m in members %}
+    <li>{{ m.last_name }}, {{ m.first_name }} ({{ m.membership_type }}) 
+      <form action="{{ url_for('members.manage_fees', member_id=m.id) }}" method="get" style="display:inline">
+        <button>Beiträge</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
