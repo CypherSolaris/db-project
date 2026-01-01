@@ -1,0 +1,15 @@
+<!-- templates/course_booking.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Kurse</h1>
+<ul>
+  {% for c in courses %}
+    <li>
+      {{ c.title }} (Plätze: {{ c.booked }}/{{ c.capacity }})
+      <form method="post" action="{{ url_for('courses.book', course_id=c.id, member_id=1) }}" style="display:inline">
+        <button>Buchen für Mitglied #1</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
