@@ -1,0 +1,23 @@
+<!-- templates/training_plan.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Trainingsplan Team #{{ team_id }}</h1>
+<form method="post">
+  <label>Start <input type="datetime-local" name="starts_at" required></label>
+  <label>Ende <input type="datetime-local" name="ends_at" required></label>
+  <label>Ort <input name="location"></label>
+  <label>Inhalt <input name="content"></label>
+  <button>Termin anlegen</button>
+</form>
+<ul>
+  {% for s in sessions %}
+    <li>{{ s.starts_at }} - {{ s.ends_at }} {{ s.location }} [{{ s.status }}]
+      {% if s.status != 'cancelled' %}
+      <form method="post" action="{{ url_for('trainings.cancel', session_id=s.id) }}" style="display:inline">
+        <button>Absagen</button>
+      </form>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
