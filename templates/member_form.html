@@ -1,0 +1,18 @@
+<!-- templates/member_form.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Neues Mitglied</h1>
+<form method="post">
+  <label>Vorname <input name="first_name" required></label>
+  <label>Nachname <input name="last_name" required></label>
+  <label>Email <input name="email"></label>
+  <label>Mitgliedstyp 
+    <select name="membership_type">
+      <option value="active">Aktiv</option>
+      <option value="junior">Junior</option>
+      <option value="passive">Passiv</option>
+    </select>
+  </label>
+  <button type="submit">Speichern</button>
+</form>
+{% endblock %}
